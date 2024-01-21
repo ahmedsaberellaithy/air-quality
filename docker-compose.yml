@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: air_quality
+      POSTGRES_USER: saber_psql_user
+      POSTGRES_PASSWORD: saber_psql_password
+    ports:
+      - '5433:5432'
+
+  # nest:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   env_file:
+  #     - .env
+  #   ports:
+  #     - '3031:3031'
+  #   depends_on:
+  #     - postgres

@@ -1,0 +1,52 @@
+# Node.js
+node_modules/
+
+# NestJS generated files
+/dist/
+/*.js
+/*.js.map
+
+# NestJS logs
+logs/
+
+# VS Code settings
+.vscode/
+
+# Environment variables
+.env
+
+# Dependency directory
+.pnp/
+
+# TypeScript configuration
+tsconfig.tsbuildinfo
+
+# Yarn
+.yarn/
+
+# macOS
+.DS_Store
+
+# npm
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor-specific files
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# Compiled Python files
+*.pyc
+
+# Compiled TypeScript files
+*.tsbuildinfo
