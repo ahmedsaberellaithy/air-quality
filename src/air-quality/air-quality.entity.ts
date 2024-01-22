@@ -16,6 +16,14 @@ export class AirQuality {
   @Column({ type: 'float' })
   latitude: number;
 
+  /**
+   * @description Air Quality Index US is a standard index referring to pollution data
+   * The main aim to separate this specific piece of info, is to sort readings.
+   * @see https://www.airnow.gov/aqi/aqi-basics/
+   */
+  @Column({ type: 'integer' })
+  aqius: number;
+
   @Column({ name: 'reading-time', type: 'timestamp' })
   readingTime: Date;
 
@@ -28,5 +36,5 @@ export class AirQuality {
   dataSource: ReadingsSource;
 
   @Column({ name: 'pollution-data', type: 'json' })
-  pollutionData: object;
+  pollutionData: any;
 }

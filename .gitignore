@@ -9,6 +9,9 @@ node_modules/
 # NestJS logs
 logs/
 
+# test coverage
+coverage/
+
 # VS Code settings
 .vscode/
 

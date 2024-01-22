@@ -13,7 +13,6 @@ async function bootstrap() {
         '\n @see : https://www.iqair.com/fr/commercial-air-quality-monitors/api',
     )
     .setVersion('1.0')
-    .addTag('AIR QUALITY')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);

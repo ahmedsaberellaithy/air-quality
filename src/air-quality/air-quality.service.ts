@@ -17,11 +17,11 @@ export class AirQualityService {
     private readonly airQualityApi: AirQualityApi,
   ) {}
 
-  async getAirQuality(
+  async getPollutionData(
     latitude: string,
     longitude: string,
   ): Promise<{
-    pollution: Record<string, unknown>;
+    pollution: any;
   }> {
     const airQualityData = await this.airQualityApi.getAirQuality(
       latitude,
@@ -32,6 +32,7 @@ export class AirQualityService {
       latitude: parseFloat(latitude),
       longitude: parseFloat(longitude),
       pollutionData: airQualityData.pollution,
+      aqius: airQualityData.aqius,
       readingTime: new Date(),
       dataSource: ReadingsSource.iqAir,
     });
@@ -40,6 +41,26 @@ export class AirQualityService {
 
     return {
       pollution: airQualityData.pollution,
+    };
+  }
+
+  async getMostPollutedTime(
+    latitude: string,
+    longitude: string,
+  ): Promise<{
+    mostPolluted: Date;
+    pollutionData: any;
+  }> {
+    const mostPolluted = await this.airQualityRepository
+      .createQueryBuilder('airQuality')
+      .where(`airQuality.latitude = ${latitude}`)
+      .andWhere(`airQuality.longitude = ${longitude}`)
+      .orderBy('aqius', 'DESC')
+      .getOne();
+
+    return {
+      mostPolluted: mostPolluted.readingTime,
+      pollutionData: mostPolluted.pollutionData,
     };
   }
 
@@ -54,7 +75,7 @@ export class AirQualityService {
     );
 
     try {
-      await this.getAirQuality(latitude, longitude);
+      await this.getPollutionData(latitude, longitude);
     } catch (error) {
       console.error('Error during cronjob of storing air quality job', {
         errorMessage: error.message,

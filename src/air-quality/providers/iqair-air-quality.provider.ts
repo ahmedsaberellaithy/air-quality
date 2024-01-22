@@ -12,8 +12,8 @@ export class IQAirAirQualityProvider implements AirQualityApi {
     latitude: string,
     longitude: string,
   ): Promise<{
-    pollution: Record<string, unknown>;
-    weather: Record<string, unknown>;
+    pollution: any;
+    aqius: number;
   }> {
     const apiKey = this.configService.get('IQAIR_API_KEY');
     const iqairBaseUrl = this.configService.get('IQAIR_API_BASE_URL');
@@ -24,6 +24,7 @@ export class IQAirAirQualityProvider implements AirQualityApi {
       const response = await axios.get(apiUrl);
 
       const currentAirQualityData = response.data?.data?.current;
+      const currentAirQualityIndex = currentAirQualityData?.pollution?.aqius;
 
       /**
        * this condition is built on the data format found on IQAir Docs
@@ -37,7 +38,10 @@ export class IQAirAirQualityProvider implements AirQualityApi {
         );
       }
 
-      return currentAirQualityData;
+      return {
+        pollution: currentAirQualityData.pollution,
+        aqius: parseInt(currentAirQualityIndex),
+      };
     } catch (error) {
       // if this error is already a custom error, proxy the error to the upper layer.
       if (error instanceof HttpProviderError) {

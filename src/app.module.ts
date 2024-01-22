@@ -6,7 +6,6 @@ import { ScheduleModule } from '@nestjs/schedule';
 import * as dotenv from 'dotenv';
 import { ConfigService } from '@nestjs/config';
 import { AppConfigModule } from './config/config.module';
-import { AirQuality } from './air-quality/air-quality.entity';
 import { AirQualityModule } from './air-quality/air-quality.module';
 
 dotenv.config();

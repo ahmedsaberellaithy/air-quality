@@ -14,9 +14,12 @@ describe('AppController', () => {
     appController = app.get<AppController>(AppController);
   });
 
-  describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHealthCheck()).toBe('Hello World!');
+  describe('health check', () => {
+    it('should return health check info', () => {
+      expect(appController.getHealthCheck()).toEqual({
+        dateTime: expect.any(String),
+        message: 'I am alive!',
+      });
     });
   });
 });

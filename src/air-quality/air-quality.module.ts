@@ -9,5 +9,6 @@ import { IQAirAirQualityProvider } from './providers/iqair-air-quality.provider'
   imports: [TypeOrmModule.forFeature([AirQuality])],
   providers: [IQAirAirQualityProvider, AirQualityService, AirQualityController],
   exports: [AirQualityService, AirQualityController],
+  controllers: [AirQualityController],
 })
 export class AirQualityModule {}
