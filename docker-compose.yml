@@ -13,6 +13,8 @@ services:
       - ./pgdata:/var/lib/postgresql/data
     ports:
       - '5433:5432'
+    networks:
+      - app_network
 
   app:
     build:
@@ -25,3 +27,9 @@ services:
       - db
     volumes:
       - ./src:/app/src
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
