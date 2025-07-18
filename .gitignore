@@ -2,6 +2,7 @@
 node_modules/
 
 # NestJS generated files
+package-lock.json
 /dist/
 /*.js
 /*.js.map
